@@ -28,6 +28,11 @@ public class TemplateController {
         return templateService.getTemplatesSummary();
     }
 
+    @GetMapping("/{templateId}")
+    public TemplateResponseDTO getTemplate(@PathVariable String templateId) {
+        return templateService.getTemplateById(templateId);
+    }
+
 //    @PutMapping("/{productId}/{reporter}")
 //    public ComplaintResponse updateComplaintContent(@PathVariable String productId,
 //                                                    @PathVariable String reporter,

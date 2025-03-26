@@ -24,4 +24,9 @@ public class TemplateService {
     public TemplateSummaryResponseDTO getTemplatesSummary() {
         var savedSummaries = templateRepository.findAllBy();
         return mapToSummaryResponseDto(savedSummaries);}
+
+    public TemplateResponseDTO getTemplateById(String templateId) {
+        var savedTemplate = templateRepository.findById(templateId).orElseThrow();
+        return mapToResponseDto(savedTemplate);
+    }
 }
