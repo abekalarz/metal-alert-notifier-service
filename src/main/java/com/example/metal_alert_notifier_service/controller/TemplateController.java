@@ -8,9 +8,13 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:8000")
 @RestController
 @RequestMapping("/api/v1/templates")
+@CrossOrigin(
+        origins = "http://localhost:8000",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.OPTIONS},
+        allowedHeaders = "*"
+)
 public class TemplateController {
 
     @Autowired
@@ -33,21 +37,9 @@ public class TemplateController {
         return templateService.getTemplateById(templateId);
     }
 
-//    @PutMapping("/{productId}/{reporter}")
-//    public ComplaintResponse updateComplaintContent(@PathVariable String productId,
-//                                                    @PathVariable String reporter,
-//                                                    @RequestBody @Valid ComplaintUpdateRequest newContent) {
-//        return complaintService.updateContent(productId, reporter, newContent.getContent());
-//    }
-//
-//    @GetMapping("/{productId}/{reporter}")
-//    public ComplaintResponse getComplaint(@PathVariable String productId,
-//                                          @PathVariable String reporter) {
-//        return complaintService.getComplaint(productId, reporter);
-//    }
-//
-//    @GetMapping
-//    public Page<ComplaintResponse> getAll(@PageableDefault(page = 0, size = 5, sort = "productId") Pageable pageable) {
-//        return complaintService.getAllComplaints(pageable);
-//    }
+    @DeleteMapping("/{templateId}")
+    public void deleteTemplate(@PathVariable String templateId) {
+        templateService.deleteTemplateById(templateId);
+    }
+
 }

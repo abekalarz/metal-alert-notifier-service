@@ -29,4 +29,8 @@ public class TemplateService {
         var savedTemplate = templateRepository.findById(templateId).orElseThrow();
         return mapToResponseDto(savedTemplate);
     }
+
+    public void deleteTemplateById(String templateId) {
+        templateRepository.deleteById(templateId);
+    }
 }
