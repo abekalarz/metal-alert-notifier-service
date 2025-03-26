@@ -2,6 +2,7 @@ package com.example.metal_alert_notifier_service.controller;
 
 import com.example.metal_alert_notifier_service.dto.TemplateRequestDTO;
 import com.example.metal_alert_notifier_service.dto.TemplateResponseDTO;
+import com.example.metal_alert_notifier_service.dto.TemplateSummaryResponseDTO;
 import com.example.metal_alert_notifier_service.service.TemplateService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class TemplateController {
             @RequestBody @Valid TemplateRequestDTO templateRequestDto
     ) {
         return templateService.addTemplate(templateRequestDto);
+    }
+
+    @GetMapping
+    public TemplateSummaryResponseDTO getSummary() {
+        return templateService.getTemplatesSummary();
     }
 
 //    @PutMapping("/{productId}/{reporter}")

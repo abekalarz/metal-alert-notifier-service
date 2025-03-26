@@ -1,10 +1,11 @@
 package com.example.metal_alert_notifier_service.mapper;
 
-import com.example.metal_alert_notifier_service.dto.ItemRuleDTO;
-import com.example.metal_alert_notifier_service.dto.RulesDTO;
-import com.example.metal_alert_notifier_service.dto.TemplateRequestDTO;
-import com.example.metal_alert_notifier_service.dto.TemplateResponseDTO;
+import com.example.metal_alert_notifier_service.dto.*;
 import com.example.metal_alert_notifier_service.model.TemplateEntity;
+import com.example.metal_alert_notifier_service.model.TemplateSummary;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class TemplateMapper {
 
@@ -26,6 +27,17 @@ public class TemplateMapper {
                 entity.getRecipients(),
                 mapRulesDto(entity.getRules())
         );
+    }
+
+    public static TemplateSummaryResponseDTO mapToSummaryResponseDto(List<TemplateSummary> entities) {
+        var summariesDto = entities
+                .stream()
+                .map(entity ->
+                        new TemplateSummaryResponseDTO.TemplateSummaryDTO(
+                                entity.getId(), entity.getTitle()
+                        ))
+                .toList();
+        return new TemplateSummaryResponseDTO(summariesDto);
     }
 
     private static TemplateEntity.Rules mapRules(RulesDTO rulesDTO) {
