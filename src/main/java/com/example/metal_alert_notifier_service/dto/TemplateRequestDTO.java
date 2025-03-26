@@ -9,3 +9,7 @@ public record TemplateRequestDTO(
         List<String> recipients,
         RulesDTO rules
 ) {}
+
+// public record RulesDTO(ItemRuleDTO item, Map<String, String> price) {}
+
+// public record ItemRuleDTO(String operator, String value) {}
