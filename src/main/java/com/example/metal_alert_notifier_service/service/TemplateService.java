@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.example.metal_alert_notifier_service.mapper.TemplateMapper.mapToEntity;
+import static com.example.metal_alert_notifier_service.mapper.TemplateMapper.mapToResponseDto;
 
 @Service
 public class TemplateService {
@@ -16,9 +17,7 @@ public class TemplateService {
     private TemplateRepository templateRepository;
 
     public TemplateResponseDTO addTemplate(@Valid TemplateRequestDTO templateRequestDto) {
-        mapToEntity(templateRequestDto);
-
-        templateRepository.save(mapToEntity(templateRequestDto));
-        return null;
+        var savedTemplate = templateRepository.save(mapToEntity(templateRequestDto));
+        return mapToResponseDto(savedTemplate);
     }
 }
