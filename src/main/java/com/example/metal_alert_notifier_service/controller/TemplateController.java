@@ -21,10 +21,10 @@ public class TemplateController {
     private TemplateService templateService;
 
     @PostMapping
-    public TemplateResponseDTO add(
+    public TemplateResponseDTO addOrUpdate(
             @RequestBody @Valid TemplateRequestDTO templateRequestDto
     ) {
-        return templateService.addTemplate(templateRequestDto);
+        return templateService.addTemplateOrUpdate(templateRequestDto);
     }
 
     @GetMapping

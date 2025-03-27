@@ -4,14 +4,13 @@ import com.example.metal_alert_notifier_service.dto.*;
 import com.example.metal_alert_notifier_service.model.TemplateEntity;
 import com.example.metal_alert_notifier_service.model.TemplateSummary;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class TemplateMapper {
 
     public static TemplateEntity mapToEntity(TemplateRequestDTO dto) {
         return new TemplateEntity(
-                null,
+                dto.id(),
                 dto.title(),
                 dto.content(),
                 dto.recipients(),
