@@ -1,13 +1,13 @@
 package com.example.metal_alert_notifier_service.dto.template;
 
 import jakarta.annotation.Nullable;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
-//TODO Add Validation annotations !
 public record TemplateRequestDTO(
         @Nullable
         String id,
@@ -17,6 +17,7 @@ public record TemplateRequestDTO(
         String content,
         @Size(min = 1, message = "Recipient list must contain at least one item.")
         List<@Email(message = "Recipient has wrong e-mail format") @NotBlank(message = "No recipient can be empty") String> recipients,
+        @Valid
         RulesDTO rules
 ) {
 }
