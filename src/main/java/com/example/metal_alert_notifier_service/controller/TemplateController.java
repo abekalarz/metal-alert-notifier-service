@@ -1,5 +1,7 @@
 package com.example.metal_alert_notifier_service.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.example.metal_alert_notifier_service.dto.template.TemplateRequestDTO;
 import com.example.metal_alert_notifier_service.dto.template.TemplateResponseDTO;
 import com.example.metal_alert_notifier_service.dto.template.TemplateSummaryResponseDTO;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 )
 public class TemplateController {
 
+    private static final Logger logger = LoggerFactory.getLogger(TemplateController.class);
+
     @Autowired
     private TemplateService templateService;
 
@@ -24,6 +28,7 @@ public class TemplateController {
     public TemplateResponseDTO addOrUpdate(
             @RequestBody @Valid TemplateRequestDTO templateRequestDto
     ) {
+        logger.info("Got new template request: {}. Saving or updating (if exists) started...", templateRequestDto);
         return templateService.addTemplateOrUpdate(templateRequestDto);
     }
 
@@ -39,6 +44,7 @@ public class TemplateController {
 
     @DeleteMapping("/{templateId}")
     public void deleteTemplate(@PathVariable String templateId) {
+        logger.info("Got new template delete request for templateId: {}. Deleting started...", templateId);
         templateService.deleteTemplateById(templateId);
     }
 
