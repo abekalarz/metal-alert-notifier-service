@@ -1,4 +1,4 @@
-package com.example.metal_alert_notifier_service.dto;
+package com.example.metal_alert_notifier_service.dto.template;
 
 import java.util.Map;
 

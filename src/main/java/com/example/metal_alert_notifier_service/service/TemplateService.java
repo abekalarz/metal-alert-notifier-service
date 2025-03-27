@@ -1,11 +1,15 @@
 package com.example.metal_alert_notifier_service.service;
 
-import com.example.metal_alert_notifier_service.dto.TemplateRequestDTO;
-import com.example.metal_alert_notifier_service.dto.TemplateResponseDTO;
-import com.example.metal_alert_notifier_service.dto.TemplateSummaryResponseDTO;
+import com.example.metal_alert_notifier_service.dto.template.TemplateRequestDTO;
+import com.example.metal_alert_notifier_service.dto.template.TemplateResponseDTO;
+import com.example.metal_alert_notifier_service.dto.template.TemplateSummaryResponseDTO;
+import com.example.metal_alert_notifier_service.mapper.TemplateMapper;
 import com.example.metal_alert_notifier_service.repository.TemplateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 import static com.example.metal_alert_notifier_service.mapper.TemplateMapper.*;
 
 @Service
@@ -21,7 +25,8 @@ public class TemplateService {
 
     public TemplateSummaryResponseDTO getTemplatesSummary() {
         var savedSummaries = templateRepository.findAllBy();
-        return mapToSummaryResponseDto(savedSummaries);}
+        return mapToSummaryResponseDto(savedSummaries);
+    }
 
     public TemplateResponseDTO getTemplateById(String templateId) {
         var savedTemplate = templateRepository.findById(templateId).orElseThrow();
@@ -30,5 +35,10 @@ public class TemplateService {
 
     public void deleteTemplateById(String templateId) {
         templateRepository.deleteById(templateId);
+    }
+
+    public List<TemplateResponseDTO> getAllTemplates() {
+        var allTemplates = templateRepository.findAll();
+        return allTemplates.stream().map(TemplateMapper::mapToResponseDto).toList();
     }
 }

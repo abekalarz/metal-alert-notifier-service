@@ -1,6 +1,6 @@
 package com.example.metal_alert_notifier_service.mapper;
 
-import com.example.metal_alert_notifier_service.dto.*;
+import com.example.metal_alert_notifier_service.dto.template.*;
 import com.example.metal_alert_notifier_service.model.TemplateEntity;
 import com.example.metal_alert_notifier_service.model.TemplateSummary;
 

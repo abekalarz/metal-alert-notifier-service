@@ -1,8 +1,8 @@
 package com.example.metal_alert_notifier_service.controller;
 
-import com.example.metal_alert_notifier_service.dto.TemplateRequestDTO;
-import com.example.metal_alert_notifier_service.dto.TemplateResponseDTO;
-import com.example.metal_alert_notifier_service.dto.TemplateSummaryResponseDTO;
+import com.example.metal_alert_notifier_service.dto.template.TemplateRequestDTO;
+import com.example.metal_alert_notifier_service.dto.template.TemplateResponseDTO;
+import com.example.metal_alert_notifier_service.dto.template.TemplateSummaryResponseDTO;
 import com.example.metal_alert_notifier_service.service.TemplateService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
