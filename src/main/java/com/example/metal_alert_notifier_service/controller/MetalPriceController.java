@@ -20,10 +20,10 @@ public class MetalPriceController {
     private PriceService priceService;
 
     @PostMapping
-    public TemplateResponseDTO setNewPrice(
+    public void setNewPrice(
             @RequestBody @Valid PriceRequestDTO priceRequestDTO
     ) {
-        return priceService.setNewPriceToFireSignal(priceRequestDTO);
+        priceService.triggerNotificationsForMatchingTemplates(priceRequestDTO);
     }
 
 }
