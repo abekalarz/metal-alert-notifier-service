@@ -23,7 +23,7 @@ public class PriceService {
     private NotificationService notificationService;
 
     public void triggerNotificationsForMatchingTemplates(PriceRequestDTO priceRequestDTO) {
-        var requestedItem = ItemTypeDTO.select(priceRequestDTO.itemType()).name().toUpperCase();
+        var requestedItem = ItemTypeDTO.select(priceRequestDTO.itemType()).name();
         var requestedPrice = new BigDecimal(priceRequestDTO.price());
 
         var matchingTemplates = findMatchingTemplates(requestedItem, requestedPrice);
