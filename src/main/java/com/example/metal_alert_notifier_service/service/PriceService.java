@@ -22,7 +22,12 @@ public class PriceService {
     @Autowired
     private NotificationService notificationService;
 
+    @Autowired
+    private PriceValidator priceValidator;
+
     public void triggerNotificationsForMatchingTemplates(PriceRequestDTO priceRequestDTO) {
+        priceValidator.validatePriceInNotificationRequest(priceRequestDTO);
+
         var requestedItem = ItemTypeDTO.select(priceRequestDTO.itemType()).name();
         var requestedPrice = new BigDecimal(priceRequestDTO.price());
 

@@ -18,7 +18,11 @@ public class TemplateService {
     @Autowired
     private TemplateRepository templateRepository;
 
+    @Autowired
+    private PriceValidator priceValidator;
+
     public TemplateResponseDTO addTemplateOrUpdate(TemplateRequestDTO templateRequestDto) {
+        priceValidator.validateRulesPrices(templateRequestDto);
         var savedTemplate = templateRepository.save(mapToEntity(templateRequestDto));
         return mapToResponseDto(savedTemplate);
     }

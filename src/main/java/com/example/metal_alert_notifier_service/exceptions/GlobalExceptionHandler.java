@@ -45,10 +45,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(UnsupportedMetalTypeException.class)
-    public ResponseEntity<ApiError> handleUnsupportedMetalType(UnsupportedMetalTypeException ex) {
+    public ResponseEntity<ApiError> handleUnsupportedMetalTypeException(UnsupportedMetalTypeException ex) {
         ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage(), List.of("Unsupported metal type"));
 
         logger.warn("Invalid metal type provided: value is not supported.: {}", apiError);
+
+        return new ResponseEntity<>(apiError, apiError.status);
+    }
+
+    @ExceptionHandler(UnsupportedPriceFormatException.class)
+    public ResponseEntity<ApiError> handleUnsupportedPriceFormatException(UnsupportedPriceFormatException ex) {
+        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage(), List.of("Unsupported price format"));
+
+        logger.warn("Invalid price format provided:: {}", apiError);
 
         return new ResponseEntity<>(apiError, apiError.status);
     }
